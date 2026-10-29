@@ -13,6 +13,7 @@ export default function Title({ onInvestigate, onContinue, onEvents, eventsAvail
   const { progress } = useGame();
   const resume = resumable(progress);
   const resumeDef = resume ? caseById(resume.id) : null;
+  const repaired = Object.values(progress).some((e) => e?.status === 'repaired');
 
   return (
     <main className="screen title" aria-labelledby="title-heading">
@@ -27,6 +28,11 @@ export default function Title({ onInvestigate, onContinue, onEvents, eventsAvail
           <span className="title__letters">NOCTAVIAE</span>
         </h1>
         <p className="title__tagline">{t(UI.titleTagline)}</p>
+        {repaired && (
+          <p className="title__notice" role="status">
+            {t(UI.saveRepaired)}
+          </p>
+        )}
         <div className="title__actions">
           <button
             type="button"

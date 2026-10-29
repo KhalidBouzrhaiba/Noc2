@@ -1,18 +1,10 @@
 // End-to-end playthrough: plays each case through the real UI (clicks, dialogs, puzzles,
 // board, hints, final deduction) using the scripted walkthrough from the content files.
 // Usage: node e2e/playthrough.mjs [baseUrl] [locale] [caseIds] [viewport]
-import { createRequire } from 'node:module';
 import { CASES } from '../src/content/index.js';
 import { tr } from '../src/core/i18n.js';
 import { UI } from '../src/core/locales/ui.js';
-
-const require = createRequire(import.meta.url);
-let chromium;
-try {
-  ({ chromium } = require('playwright'));
-} catch {
-  ({ chromium } = await import('/opt/node22/lib/node_modules/playwright/index.js'));
-}
+import { chromium } from './pw.mjs';
 
 const base = process.argv[2] ?? 'http://localhost:4174/';
 const locale = process.argv[3] ?? 'en';
