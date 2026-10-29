@@ -155,9 +155,10 @@ npm run e2e:events -- http://localhost:5175/
 
 ## Deployment (GitHub Pages)
 
-The workflow `.github/workflows/deploy.yml` runs the tests, builds and deploys on every push to `main`. In
-the repository settings, set **Pages → Build and deployment → Source** to **GitHub Actions** once. Asset
-paths are relative and the only route (`#/admin`) is a hash, so no server rewrites are needed.
+The workflow `.github/workflows/deploy.yml` runs the tests and the build on every push to `main`, then
+publishes `dist/` to the `gh-pages` branch, which GitHub Pages serves (**Settings → Pages → Deploy from a
+branch → gh-pages**). Asset paths are relative and the only route (`#/admin`) is a hash, so no server
+rewrites are needed.
 
 ## Troubleshooting
 
