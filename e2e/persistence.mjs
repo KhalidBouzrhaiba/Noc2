@@ -18,7 +18,8 @@ const page = await ctx.newPage();
 const errors = [];
 page.on('pageerror', (e) => errors.push(e.message));
 await page.addInitScript(() => {
-  if (!localStorage.getItem('noctaviae:settings')) localStorage.setItem('noctaviae:settings', JSON.stringify({ locale: 'en', sound: false, motion: 'reduced' }));
+  if (!localStorage.getItem('noctaviae:settings')) localStorage.setItem('noctaviae:guide-seen', '1');
+    localStorage.setItem('noctaviae:settings', JSON.stringify({ locale: 'en', sound: false, motion: 'reduced' }));
 });
 await page.goto(base);
 check('no Continue button without saved progress', (await page.getByRole('button', { name: en(UI.titleContinue) }).count()) === 0);

@@ -1245,3 +1245,29 @@
   display: grid;
   gap: var(--s3);
 }
+
+/* ═════════ FIRST-PLAY GUIDE ═════════ */
+.guide ol {
+  display: grid;
+  gap: var(--s3);
+  margin-block-end: var(--s5);
+  counter-reset: g;
+}
+.guide li {
+  counter-increment: g;
+  display: grid;
+  grid-template-columns: 2em 1fr;
+  gap: var(--s3);
+  align-items: start;
+}
+.guide li::before {
+  content: counter(g);
+  display: grid;
+  place-items: center;
+  inline-size: 1.8em;
+  block-size: 1.8em;
+  border-radius: 50%;
+  background: var(--candle);
+  color: #2a1a08;
+  font-family: var(--font-doc);
+}

@@ -56,7 +56,13 @@ export default function Game({ caseId, onEnding, onExit }) {
   const { push } = useToasts();
   const def = caseById(caseId);
   const p = progress[caseId]?.p;
-  const [overlay, setOverlay] = useState(null);
+  const [overlay, setOverlay] = useState(() => {
+    try {
+      return localStorage.getItem('noctaviae:guide-seen') ? null : { type: 'guide' };
+    } catch {
+      return null;
+    }
+  });
   const [using, setUsing] = useState(null);
   const feedback = useFeedback(def);
   const titleRef = useRef(null);
@@ -293,11 +299,53 @@ export default function Game({ caseId, onEnding, onExit }) {
           (finalReady ? <FinalDeduction def={def} p={p} onSubmit={(answers) => run({ type: 'final', answers })} /> : <p>{t(UI.finalLocked)}</p>)}
       </Modal>
 
+      <Modal
+        open={overlay?.type === 'guide'}
+        onClose={() => {
+          try {
+            localStorage.setItem('noctaviae:guide-seen', '1');
+          } catch {
+            /* optional */
+          }
+          close();
+        }}
+        title={t(UI.guideTitle)}
+        className="guidepanel"
+      >
+        {overlay?.type === 'guide' && (
+          <div className="guide">
+            <ol>
+              {[UI.guideLook, UI.guideNotebook, UI.guideMap, UI.guideCat, UI.guideConclude].map((x, i) => (
+                <li key={i}>{t(x)}</li>
+              ))}
+            </ol>
+            <button
+              type="button"
+              className="btn btn--primary"
+              autoFocus
+              onClick={() => {
+                try {
+                  localStorage.setItem('noctaviae:guide-seen', '1');
+                } catch {
+                  /* optional */
+                }
+                close();
+              }}
+            >
+              {t(UI.guideOk)}
+            </button>
+          </div>
+        )}
+      </Modal>
+
       <Modal open={overlay?.type === 'menu'} onClose={close} title={t(UI.menuTitle)} className="menupanel">
         {overlay?.type === 'menu' && (
           <div className="menu">
             <button type="button" className="btn btn--primary" onClick={close}>
               {t(UI.menuResume)}
+            </button>
+            <button type="button" className="btn btn--secondary" onClick={() => setOverlay({ type: 'guide' })}>
+              {t(UI.guideTitle)}
             </button>
             <button type="button" className="btn btn--secondary" onClick={() => onExit('cases')}>
               {t(UI.menuToCases)}

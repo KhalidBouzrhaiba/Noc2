@@ -19,6 +19,7 @@ let total = 0;
 for (const locale of locales) {
   const page = await (await browser.newContext({ viewport: { width: 1280, height: 860 } })).newPage();
   await page.addInitScript(([l, prog]) => {
+    localStorage.setItem('noctaviae:guide-seen', '1');
     localStorage.setItem('noctaviae:settings', JSON.stringify({ locale: l, sound: false, motion: 'reduced' }));
     localStorage.setItem('noctaviae:case:harvest', prog);
   }, [locale, JSON.stringify(p)]);

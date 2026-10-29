@@ -18,7 +18,8 @@ const errors = [];
 page.on('pageerror', (e) => errors.push(e.message));
 page.on('console', (m) => m.type() === 'error' && errors.push(m.text()));
 await page.addInitScript(() => {
-  if (!localStorage.getItem('noctaviae:settings')) localStorage.setItem('noctaviae:settings', JSON.stringify({ locale: 'en', sound: false, motion: 'reduced' }));
+  if (!localStorage.getItem('noctaviae:settings')) localStorage.setItem('noctaviae:guide-seen', '1');
+    localStorage.setItem('noctaviae:settings', JSON.stringify({ locale: 'en', sound: false, motion: 'reduced' }));
 });
 
 // Organizer

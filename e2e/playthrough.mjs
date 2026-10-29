@@ -23,7 +23,8 @@ for (const def of CASES.filter((c) => only.includes(c.id))) {
   page.on('console', (m) => m.type() === 'error' && errors.push(m.text()));
   page.on('pageerror', (e) => errors.push(e.message));
   await page.addInitScript((l) => {
-    if (!localStorage.getItem('noctaviae:settings')) localStorage.setItem('noctaviae:settings', JSON.stringify({ locale: l, sound: false, motion: 'reduced' }));
+    if (!localStorage.getItem('noctaviae:settings')) localStorage.setItem('noctaviae:guide-seen', '1');
+    localStorage.setItem('noctaviae:settings', JSON.stringify({ locale: l, sound: false, motion: 'reduced' }));
   }, locale);
   await page.goto(base);
 
