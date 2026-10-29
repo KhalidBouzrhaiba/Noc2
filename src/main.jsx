@@ -12,15 +12,18 @@ import './styles/game.css';
 import { SettingsProvider } from './core/settings.jsx';
 import { GameProvider } from './game/GameProvider.jsx';
 import { ToastProvider } from './ui/Toasts.jsx';
+import { EventProvider } from './events/EventProvider.jsx';
 import App from './App.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <SettingsProvider>
       <GameProvider>
-        <ToastProvider>
-          <App />
-        </ToastProvider>
+        <EventProvider>
+          <ToastProvider>
+            <App />
+          </ToastProvider>
+        </EventProvider>
       </GameProvider>
     </SettingsProvider>
   </StrictMode>,

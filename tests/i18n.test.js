@@ -3,12 +3,16 @@ import { CASES } from '../src/content/index.js';
 import { UI } from '../src/core/locales/ui.js';
 import { findMissing, LOCALES, tr } from '../src/core/i18n.js';
 import { NOCTAVIAE } from '../src/content/noctaviae.js';
+import { EV } from '../src/core/locales/events.js';
 
 // Translation audit: every localized value must have all four languages.
 describe('translation audit', () => {
   it('UI strings are complete in Darija, Arabic, French and English', () => {
     expect(findMissing(UI, 'UI')).toEqual([]);
     for (const [k, v] of Object.entries(UI)) for (const l of LOCALES) expect(typeof v[l], `${k}.${l}`).toBe('string');
+  });
+  it('event and admin strings are complete', () => {
+    expect(findMissing(EV, 'EV')).toEqual([]);
   });
   it('Noctaviae lines are complete', () => {
     expect(findMissing(NOCTAVIAE, 'NOCTAVIAE')).toEqual([]);

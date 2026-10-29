@@ -10,6 +10,9 @@ import Radio from './screens/Radio.jsx';
 import Reveal from './screens/Reveal.jsx';
 import Game from './screens/Game.jsx';
 import Ending from './screens/Ending.jsx';
+import Events from './screens/Events.jsx';
+import Admin from './screens/Admin.jsx';
+import { useEvents } from './events/EventProvider.jsx';
 
 /**
  * Opening order (fixed): title → case selection → radio → blackout → town reveal → play.
@@ -17,7 +20,9 @@ import Ending from './screens/Ending.jsx';
  */
 export default function App() {
   const { progress, startCase } = useGame();
-  const [screen, setScreen] = useState('title');
+  const events = useEvents();
+  const inEvent = !!events?.active;
+  const [screen, setScreen] = useState(() => (window.location.hash === '#/admin' && events?.mode ? 'admin' : 'title'));
   const [caseId, setCaseId] = useState(null);
   const def = caseId ? caseById(caseId) : null;
   const p = caseId ? progress[caseId]?.p : null;
@@ -37,23 +42,52 @@ export default function App() {
   );
 
   const toEnding = useCallback(() => setScreen('ending'), []);
-  const exit = useCallback((to) => {
-    audio.stopAll();
-    setScreen(to);
-  }, []);
+  const exit = useCallback(
+    (to) => {
+      audio.stopAll();
+      if (to === 'title' && inEvent) events.leave();
+      // inside an event, "case files" means the event hub
+      setScreen(to === 'cases' && inEvent ? 'events' : to);
+    },
+    [inEvent, events],
+  );
+
+  useEffect(() => {
+    const onHash = () => events?.mode && window.location.hash === '#/admin' && setScreen('admin');
+    window.addEventListener('hashchange', onHash);
+    return () => window.removeEventListener('hashchange', onHash);
+  }, [events?.mode]);
 
   let view;
-  if (screen === 'title' || !def || !p)
-    view = <Title onInvestigate={() => setScreen('cases')} onContinue={(id) => start(id, 'resume')} />;
+  if (screen === 'admin' && events?.mode)
+    view = (
+      <Admin
+        onExit={() => {
+          if (window.location.hash) window.history.replaceState(null, '', window.location.pathname + window.location.search);
+          setScreen('title');
+        }}
+      />
+    );
+  else if (screen === 'events' && events?.mode) view = <Events onBack={() => setScreen('title')} onPlay={(id, mode) => start(id, mode)} />;
+  else if (screen === 'title' || !def || !p)
+    view = (
+      <Title
+        onInvestigate={() => setScreen('cases')}
+        onContinue={(id) => start(id, 'resume')}
+        eventsAvailable={!!events?.mode}
+        onEvents={() => setScreen('events')}
+        onAdmin={() => setScreen('admin')}
+      />
+    );
   else if (screen === 'cases') view = <CaseSelect onStart={start} onBack={() => setScreen('title')} />;
   else if (screen === 'radio') view = <Radio key={`${caseId}-${p.run}`} def={def} onDone={() => setScreen('reveal')} />;
   else if (screen === 'reveal') view = <Reveal def={def} progress={p} onEnter={() => setScreen('play')} />;
   else if (screen === 'ending' && p.completed)
-    view = <Ending def={def} p={p} onReplay={() => start(caseId, 'replay')} onCases={() => exit('cases')} onTitle={() => exit('title')} />;
+    view = <Ending def={def} p={p} onReplay={inEvent ? null : () => start(caseId, 'replay')} onCases={() => exit('cases')} onTitle={() => exit('title')} />;
   else view = <Game key={`${caseId}-${p.run}`} caseId={caseId} onEnding={toEnding} onExit={exit} />;
 
   // The case-selection screen must be reachable without an active case.
-  if (screen === 'cases' && (!def || !p)) view = <CaseSelect onStart={start} onBack={() => setScreen('title')} />;
+  if (screen === 'cases' && (!def || !p) && !inEvent) view = <CaseSelect onStart={start} onBack={() => setScreen('title')} />;
 
   return <ErrorBoundary onReset={() => setScreen('title')}>{view}</ErrorBoundary>;
 }

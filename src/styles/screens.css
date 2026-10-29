@@ -783,3 +783,222 @@
   padding: var(--s6);
   text-align: center;
 }
+
+/* ═════════ EVENTS & ADMIN ═════════ */
+.events,
+.admin {
+  padding: calc(var(--s3) + env(safe-area-inset-top)) var(--s4) var(--s7);
+  background: radial-gradient(70% 50% at 50% 0%, #2a2134, var(--ink) 75%);
+}
+.devbanner {
+  margin-block: var(--s3);
+  padding: var(--s2) var(--s4);
+  border: 2px dashed var(--warn);
+  border-radius: var(--radius);
+  color: var(--warn);
+  font-weight: 700;
+  text-align: center;
+}
+.events__join,
+.events__hub {
+  max-inline-size: 1080px;
+  margin-inline: auto;
+  display: grid;
+  gap: var(--s4);
+}
+.events__form {
+  display: grid;
+  gap: var(--s4);
+  max-inline-size: 480px;
+}
+.events__form label {
+  display: grid;
+  gap: var(--s1);
+}
+.events__form textarea {
+  font: inherit;
+  padding: 0.5em 0.75em;
+  border-radius: var(--radius);
+  border: 1px solid var(--char-4);
+  background: var(--ink);
+  color: inherit;
+}
+.events__mine ul,
+.admin__events {
+  display: grid;
+  gap: var(--s2);
+}
+.events__status {
+  text-align: center;
+}
+.events__cases .file__inside {
+  animation: none;
+}
+.badge--ev-active {
+  color: var(--ok);
+}
+.badge--ev-paused {
+  color: var(--warn);
+}
+.badge--ev-completed,
+.badge--ev-cancelled {
+  color: var(--text-faint);
+}
+.eventstrip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s2);
+  padding: var(--s1) var(--s3);
+  border-radius: var(--radius);
+  border: 1px solid rgb(141 122 184 / 0.45);
+  background: rgb(141 122 184 / 0.08);
+  font-size: var(--fs-sm);
+}
+.eventstrip .feedback {
+  margin: 0;
+  padding: var(--s1) var(--s2);
+}
+.title__admin {
+  position: absolute;
+  inset-block-end: calc(var(--s3) + env(safe-area-inset-bottom));
+  inset-inline-start: var(--s4);
+  border: 0;
+  background: none;
+  color: var(--text-faint);
+  font-size: var(--fs-xs);
+  text-decoration: underline;
+  min-block-size: var(--tap);
+}
+
+.lb {
+  display: grid;
+  gap: var(--s3);
+}
+.lb__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--s3);
+}
+.lb__head h2,
+.admin__panel h2,
+.admin__panel h3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  color: var(--parchment);
+}
+.lb__podium {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--s3);
+}
+.lb__top {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: var(--s3);
+  align-items: center;
+  padding: var(--s3) var(--s4);
+  border-radius: var(--radius);
+  border: 1px solid var(--char-4);
+  background: var(--char-2);
+}
+.lb__top--1 {
+  border-color: var(--candle);
+  box-shadow: var(--glow-candle);
+}
+.lb__top--2 {
+  border-color: #c9c2b0;
+}
+.lb__top--3 {
+  border-color: #b5793e;
+}
+.lb__medal {
+  display: grid;
+  place-items: center;
+  inline-size: 2em;
+  block-size: 2em;
+  border-radius: 50%;
+  background: var(--candle);
+  color: #2a1a08;
+  font-family: var(--font-doc);
+}
+.lb__top--2 .lb__medal {
+  background: #c9c2b0;
+}
+.lb__top--3 .lb__medal {
+  background: #b5793e;
+}
+.lb__score {
+  font-family: var(--font-doc);
+  color: var(--candle);
+}
+.lb__table {
+  inline-size: 100%;
+  border-collapse: collapse;
+  font-size: var(--fs-sm);
+}
+.lb__table th,
+.lb__table td {
+  padding: var(--s2) var(--s3);
+  border-block-end: 1px solid var(--char-3);
+  text-align: start;
+}
+.lb__table tr.is-me {
+  background: rgb(242 196 107 / 0.08);
+}
+.table-wrap {
+  overflow-x: auto;
+}
+.admin__panel {
+  max-inline-size: 1080px;
+  margin: var(--s4) auto 0;
+  padding: var(--s4) var(--s5);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--char-3);
+  background: var(--char);
+  display: grid;
+  gap: var(--s3);
+}
+.admin__detail {
+  max-inline-size: 1080px;
+  margin-inline: auto;
+}
+.admin__grid {
+  display: grid;
+  gap: 0 var(--s4);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr));
+  max-inline-size: 1080px;
+  margin-inline: auto;
+}
+.admin__grid .admin__panel {
+  margin-inline: 0;
+}
+.admin__code {
+  font-family: var(--font-doc);
+  font-size: 1.2rem;
+  letter-spacing: 0.12em;
+  color: var(--candle);
+}
+.admin__num {
+  inline-size: 7em;
+}
+.admin__who {
+  text-align: center;
+}
+.admin__audit {
+  display: grid;
+  gap: var(--s1);
+  font-size: var(--fs-sm);
+  max-block-size: 320px;
+  overflow-y: auto;
+}
+.admin__audit time {
+  color: var(--text-faint);
+}
+.admin__stats {
+  display: grid;
+  gap: var(--s1);
+  font-size: var(--fs-sm);
+}

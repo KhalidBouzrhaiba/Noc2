@@ -94,9 +94,11 @@ export default function Ending({ def, p, onReplay, onCases, onTitle }) {
           <p className="muted">{t(UI.endTimeNote)}</p>
         </section>
         <div className="row ending__actions">
-          <button type="button" className="btn btn--primary" onClick={onReplay}>
-            {t(UI.endReplay)}
-          </button>
+          {onReplay && (
+            <button type="button" className="btn btn--primary" onClick={onReplay}>
+              {t(UI.endReplay)}
+            </button>
+          )}
           <button type="button" className="btn btn--secondary" onClick={onCases}>
             {t(UI.endCases)}
           </button>

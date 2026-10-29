@@ -1,6 +1,7 @@
 import { useMemo, useRef, useState } from 'react';
 import { useSettings } from '../core/settings.jsx';
 import { UI } from '../core/locales/ui.js';
+import { EV } from '../core/locales/events.js';
 import { audio } from '../core/audio.js';
 import { NOCTAVIAE } from '../content/noctaviae.js';
 import { check } from '../game/conditions.js';
@@ -33,15 +34,24 @@ export default function HintScene({ def, p, cfg, onBuy }) {
   const current = list.find((x) => x.id === topic) ?? list[0];
   const objective = activeObjectives(def, p)[0];
 
-  const buy = (level) => {
+  const [pending, setPending] = useState(false);
+  const [refusal, setRefusal] = useState(null);
+  const buy = async (level) => {
     if (busy.current) return;
     busy.current = true;
-    // a fresh transaction id per confirmed purchase; the engine ignores duplicates
+    setPending(true);
+    setRefusal(null);
+    // a fresh transaction id per confirmed purchase; duplicates are ignored by the engine and server
     const tx = `${current.id}:${level}:${Date.now()}:${Math.random().toString(36).slice(2, 8)}`;
-    const r = onBuy(current.id, level, tx);
-    if (r.code === 'purchased') audio.play('pour');
-    setConfirm(null);
-    busy.current = false;
+    try {
+      const r = await onBuy(current.id, level, tx);
+      if (r?.code === 'purchased') audio.play('pour');
+      if (r?.code === 'server_refused') setRefusal(r.reason);
+    } finally {
+      setConfirm(null);
+      setPending(false);
+      busy.current = false;
+    }
   };
 
   return (
@@ -110,8 +120,8 @@ export default function HintScene({ def, p, cfg, onBuy }) {
                       ) : confirm === level ? (
                         <div className="level__confirm" role="group">
                           <p>{f(UI.hintConfirm, { cost, balance })}</p>
-                          <button type="button" className="btn btn--primary" onClick={() => buy(level)}>
-                            {t(UI.hintYes)}
+                          <button type="button" className="btn btn--primary" onClick={() => buy(level)} disabled={pending} aria-busy={pending}>
+                            {t(pending ? UI.loading : UI.hintYes)}
                           </button>
                           <button type="button" className="btn btn--ghost" onClick={() => setConfirm(null)}>
                             {t(UI.cancel)}
@@ -128,6 +138,11 @@ export default function HintScene({ def, p, cfg, onBuy }) {
               </ol>
             )}
           </>
+        )}
+        {refusal && (
+          <p className="feedback feedback--wrong" role="alert">
+            {f(EV.hintServerFail, { reason: refusal })}
+          </p>
         )}
         <p className="tea__policy muted">{t(UI.hintPolicy)}</p>
       </div>

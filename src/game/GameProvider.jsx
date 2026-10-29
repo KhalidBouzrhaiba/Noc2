@@ -15,19 +15,19 @@ const store = createStore();
 export function GameProvider({ children }) {
   const [scope, setScope] = useState('solo');
   const [config, setConfig] = useState(DEFAULT_CONFIG);
+  // Refs mirror scope/config so an action issued right after switching scope uses the new ones.
+  const scopeRef = useRef('solo');
+  const configRef = useRef(DEFAULT_CONFIG);
   const progressRef = useRef({});
   const [progress, setProgress] = useState(() => loadAll('solo', progressRef));
   const [saveError, setSaveError] = useState(null);
   const listeners = useRef(new Set());
 
-  const persist = useCallback(
-    (p) => {
-      const res = saveCase(store, p, scope);
-      setSaveError(res.ok ? null : res.error);
-      return res;
-    },
-    [scope],
-  );
+  const persist = useCallback((p) => {
+    const res = saveCase(store, p, scopeRef.current);
+    setSaveError(res.ok ? null : res.error);
+    return res;
+  }, []);
 
   const commit = useCallback(
     (p) => {
@@ -44,7 +44,7 @@ export function GameProvider({ children }) {
       const def = caseById(caseId);
       const entry = progressRef.current[caseId];
       if (!def || !entry?.p) return { ok: false, code: 'no_session' };
-      const { p, r } = act(def, entry.p, action, config);
+      const { p, r } = act(def, entry.p, action, configRef.current);
       if (p !== entry.p) {
         const saved = commit(p);
         r.saved = saved.ok;
@@ -52,7 +52,7 @@ export function GameProvider({ children }) {
       listeners.current.forEach((fn) => fn(caseId, action, r, p));
       return r;
     },
-    [commit, config],
+    [commit],
   );
 
   /** Start, resume or replay a case. Replay resets only that case (keeping its best score). */
@@ -76,12 +76,14 @@ export function GameProvider({ children }) {
       delete next[caseId];
       progressRef.current = next;
       setProgress(next);
-      store.remove(KEYS.case(caseId, scope));
+      store.remove(KEYS.case(caseId, scopeRef.current));
     },
-    [scope],
+    [],
   );
 
   const switchScope = useCallback((nextScope, cfg = DEFAULT_CONFIG) => {
+    scopeRef.current = nextScope;
+    configRef.current = cfg;
     setScope(nextScope);
     setConfig(cfg);
     setProgress(loadAll(nextScope, progressRef));

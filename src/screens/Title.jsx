@@ -1,5 +1,6 @@
 import { useSettings } from '../core/settings.jsx';
 import { UI } from '../core/locales/ui.js';
+import { EV } from '../core/locales/events.js';
 import { audio } from '../core/audio.js';
 import { caseById } from '../content/index.js';
 import { useGame, resumable } from '../game/GameProvider.jsx';
@@ -8,7 +9,7 @@ import Townscape from '../art/Townscape.jsx';
 import Noctaviae from '../art/Noctaviae.jsx';
 import TopControls from '../ui/TopControls.jsx';
 
-export default function Title({ onInvestigate, onContinue, onEvents, eventsAvailable }) {
+export default function Title({ onInvestigate, onContinue, onEvents, onAdmin, eventsAvailable }) {
   const { t, f } = useSettings();
   const { progress } = useGame();
   const resume = resumable(progress);
@@ -65,6 +66,11 @@ export default function Title({ onInvestigate, onContinue, onEvents, eventsAvail
           )}
         </div>
       </div>
+      {eventsAvailable && (
+        <button type="button" className="title__admin" onClick={onAdmin}>
+          {t(EV.adSignIn)}
+        </button>
+      )}
       <figure className="title__cat">
         <Noctaviae className="title__noctaviae" />
         <figcaption className="title__cat-line">{t(NOCTAVIAE.titleLine)}</figcaption>

@@ -20,6 +20,9 @@ import TopControls from '../ui/TopControls.jsx';
 import { Prop } from '../art/props.jsx';
 import { ItemIcon } from '../art/ItemIcons.jsx';
 import Noctaviae from '../art/Noctaviae.jsx';
+import { useEvents } from '../events/EventProvider.jsx';
+import { SyncStatus, evError } from './Events.jsx';
+import { EV } from '../core/locales/events.js';
 
 const OUTDOOR = new Set(['tower', 'square', 'garden', 'street']);
 
@@ -57,6 +60,16 @@ export default function Game({ caseId, onEnding, onExit }) {
   const [using, setUsing] = useState(null);
   const feedback = useFeedback(def);
   const titleRef = useRef(null);
+  const events = useEvents();
+  const inEvent = !!events?.active;
+
+  // In an event the server decides: the hint is shown only after it confirms the purchase.
+  const buyHint = async (puzzle, level, tx) => {
+    if (!inEvent) return run({ type: 'hint', puzzle, level, tx });
+    const res = await events.buyHint(caseId, puzzle, level);
+    if (!res.ok) return { ok: false, code: 'server_refused', reason: evError(t, f, res.code) };
+    return run({ type: 'hint', puzzle, level, tx });
+  };
 
   const run = useCallback(
     (action) => {
@@ -153,6 +166,13 @@ export default function Game({ caseId, onEnding, onExit }) {
           </div>
         </dl>
       </header>
+
+      {inEvent && (
+        <div className="eventstrip">
+          <span dir="auto">{f(EV.playingAs, { name: events.active.name })}</span>
+          <SyncStatus sync={events.sync} />
+        </div>
+      )}
 
       <details className="objectives" open>
         <summary>
@@ -265,7 +285,7 @@ export default function Game({ caseId, onEnding, onExit }) {
       </Modal>
 
       <Modal open={overlay?.type === 'hints'} onClose={close} title={t(UI.hintTitle)} wide className="hintpanel">
-        {overlay?.type === 'hints' && <HintScene def={def} p={p} cfg={config} onBuy={(puzzle, level, tx) => run({ type: 'hint', puzzle, level, tx })} />}
+        {overlay?.type === 'hints' && <HintScene def={def} p={p} cfg={config} onBuy={buyHint} />}
       </Modal>
 
       <Modal open={overlay?.type === 'final'} onClose={close} title={t(UI.finalTitle)} wide className="finalpanel">
