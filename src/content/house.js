@@ -6,11 +6,12 @@ import { L } from '../core/i18n.js';
 export const bible = {
   truth:
     'No. 7 Weavers’ Lane, built 1921 by architect Ilyas Marrow (lintel “I.M. 1921”, round window, crescent ' +
-    'weathervane), stands behind the hedges of today’s 15 Linden Street. In 1968 the town planned a road through ' +
+    'weathervane), stands behind the hedge of 15 Linden Street, a small house built later on the empty number. In 1968 the town planned a road through ' +
     'Weavers’ Lane; demolition order 68/14 withdrew the address of No. 7 and the lane was merged into Linden Street ' +
     'and renumbered. In 1969 the road project was abandoned and the demolition orders annulled — but the registry ' +
     'was never corrected. Marrow received the annulment letter and chose not to forward it: an unlisted house was ' +
-    'left alone. The 1970 map therefore shows no house between 13 and 15. The house was never demolished.',
+    'left alone. The 1970 map therefore shows a gap marked "garden" between 13 and 17; No. 15 was built in front of it ' +
+    'in the 1980s. The house was never demolished.',
   initialBelief: 'Either the house never existed, or it was demolished and people misremember it.',
   characters: {
     haddad: 'Old resident; remembers the lane being renamed and the road that never came.',
@@ -25,7 +26,8 @@ export const bible = {
     ['1955', 'Map shows No. 7 Weavers’ Lane (map1955)'],
     ['1968', 'Road plan; order 68/14 withdraws the address; lane merged into Linden St and renumbered (registry, decree)'],
     ['1969', 'Road abandoned, orders annulled (clipping, letter)'],
-    ['1970', 'New map: no house between 13 and 15 (map1970)'],
+    ['1970', 'New map: a "garden" gap between 13 and 17 (map1970)'],
+    ['1980s', 'A small house, No. 15, is built in front of the hedge (street)'],
   ],
   theories: {
     neverExisted: { contradictedBy: ['map1955', 'photo', 'plate', 'registry'] },
@@ -128,10 +130,10 @@ export default {
       kind: 'document', status: 'verified', from: 'archive',
       title: L('خريطة 1970', 'خريطة 1970', 'Plan de 1970', '1970 map'),
       body: L(
-        'زنقة الزيزفون: …، 11، 13، 15، 17.\nزنقة الدرّازة ما بقاتش. البير باقي.\nبين 13 و15: بلاصة خاوية مكتوب عليها «جردة».',
-        'شارع الزيزفون: …، 11، 13، 15، 17.\nلم يعد زقاق النسّاجين موجودًا. البئر باقية.\nبين 13 و15: فراغ مكتوب عليه «حديقة».',
-        'Rue des Tilleuls : …, 11, 13, 15, 17.\nLa rue des Tisserands a disparu. Le puits est toujours là.\nEntre 13 et 15 : un blanc marqué « jardin ».',
-        'Linden Street: …, 11, 13, 15, 17.\nWeavers’ Lane is gone. The well remains.\nBetween 13 and 15: a blank marked “garden”.',
+        'زنقة الزيزفون: …، 9، 11، 13، 17.\nزنقة الدرّازة ما بقاتش. البير باقي.\nبين 13 و17: بلاصة خاوية مكتوب عليها «جردة».',
+        'شارع الزيزفون: …، 9، 11، 13، 17.\nلم يعد زقاق النسّاجين موجودًا. البئر باقية.\nبين 13 و17: فراغ مكتوب عليه «حديقة».',
+        'Rue des Tilleuls : …, 9, 11, 13, 17.\nLa rue des Tisserands a disparu. Le puits est toujours là.\nEntre 13 et 17 : un blanc marqué « jardin ».',
+        'Linden Street: …, 9, 11, 13, 17.\nWeavers’ Lane is gone. The well remains.\nBetween 13 and 17: a blank marked “garden”.',
       ),
     },
     decree: {
@@ -308,7 +310,7 @@ export default {
       name: L('طبلة الضو', 'طاولة الإضاءة', 'Table lumineuse', 'Light table'),
       text: [
         { text: L('مزيانة باش تحط خريطة فوق خريطة.', 'تصلح لوضع خريطة فوق أخرى.', 'Idéale pour superposer deux plans.', 'Good for laying one map over another.') },
-        { if: { puzzle: 'c_maps' }, text: L('الخريطتين متطابقين. الرقم 7 كيطيح بين 13 و15.', 'الخريطتان متطابقتان. الرقم 7 يقع بين 13 و15.', 'Les deux plans coïncident. Le n° 7 tombe entre le 13 et le 15.', 'The maps align. No. 7 falls between 13 and 15.') },
+        { if: { puzzle: 'c_maps' }, text: L('الخريطتين متطابقين. الرقم 7 كيطيح بين 13 و17.', 'الخريطتان متطابقتان. الرقم 7 يقع بين 13 و17.', 'Les deux plans coïncident. Le n° 7 tombe entre le 13 et le 17.', 'The maps align. No. 7 falls between 13 and 17.') },
       ],
       locked: L('خاصك جوج ديال الخرايط من وقتين مختلفين، والقرار اللي بدّل الأرقام.', 'تحتاج خريطتين من زمنين مختلفين، والقرار الذي غيّر الأرقام.', 'Il faut deux plans d’époques différentes, et l’arrêté qui a changé les numéros.', 'You need two maps from different years, and the decree that changed the numbers.'),
     },
@@ -352,10 +354,10 @@ export default {
     {
       id: 'st_15', loc: 'street', prop: 'hedge', at: [62, 56, 30],
       name: L('رقم 15 والشجر', 'الرقم 15 والسياج', 'Le n° 15 et sa haie', 'No. 15 and its hedge'),
-      text: L('شجر عالي بزاف لدار صغيرة بحال هادي.', 'سياج أعلى من اللازم لبيت صغير كهذا.', 'Une haie bien haute pour une si petite maison.', 'A very tall hedge for such a small house.'),
+      text: L('دار صغيرة جديدة، وشجر عالي بزاف وراها.', 'بيت صغير حديث، وخلفه سياج أعلى من اللازم.', 'Une petite maison récente, et derrière elle une haie bien trop haute.', 'A small, newer house — and behind it, a hedge far too tall.'),
     },
     {
-      id: 'st_vane', loc: 'street', prop: 'weathervane', at: [70, 16, 10], gives: { clues: ['weathervane'] }, doc: 'weathervane',
+      id: 'st_vane', loc: 'street', prop: 'weathervane', at: [70, 30, 7], gives: { clues: ['weathervane'] }, doc: 'weathervane',
       name: L('شي حاجة فوق الشجر', 'شيء فوق السياج', 'Quelque chose au-dessus de la haie', 'Something above the hedge'),
       text: L('كتدور مع الريح.', 'تدور مع الريح.', 'Ça tourne avec le vent.', 'It turns with the wind.'),
     },
@@ -443,18 +445,18 @@ export default {
         'According to the 1968 decree, where does old No. 7 fall on Linden Street?',
       ),
       options: [
-        { id: '13_15', text: L('بين 13 و15', 'بين 13 و15', 'Entre le 13 et le 15', 'Between 13 and 15') },
-        { id: '15', text: L('هي رقم 15', 'هو الرقم 15', 'C’est le n° 15', 'It is No. 15'), why: L('رقم 15 كان 7؟ شوف القرار: 7 ما عندهاش رقم جديد.', 'هل كان الرقم 15 هو 7؟ القرار يقول إن 7 بلا رقم جديد.', 'Le 15 serait l’ancien 7 ? L’arrêté dit que le 7 n’a reçu aucun numéro.', 'Was 15 once 7? The decree says No. 7 got no new number.') },
+        { id: '13_17', text: L('بين 13 و17', 'بين 13 و17', 'Entre le 13 et le 17', 'Between 13 and 17') },
+        { id: '15', text: L('هي رقم 15', 'هو الرقم 15', 'C’est le n° 15', 'It is No. 15'), why: L('رقم 15 ما كاينش فخريطة 1970، والقرار كيقول 7 ما عندهاش رقم جديد.', 'الرقم 15 غير موجود في خريطة 1970، والقرار يقول إن 7 بلا رقم جديد.', 'Le n° 15 n’existe pas sur le plan de 1970, et l’arrêté dit que le 7 n’a reçu aucun numéro.', 'No. 15 isn’t on the 1970 map, and the decree says No. 7 got no new number.') },
         { id: '17', text: L('هي رقم 17', 'هو الرقم 17', 'C’est le n° 17', 'It is No. 17'), why: L('17 هي 9 القديمة.', 'الرقم 17 هو 9 القديم.', 'Le 17 est l’ancien 9.', '17 is the old No. 9.') },
         { id: 'well', text: L('حدا البير', 'قرب البئر', 'Près du puits', 'By the well'), why: L('البير هو فين كتلاقى الزنقتين، ماشي فين كاينة الدار.', 'البئر حيث يلتقي الشارعان، لا حيث البيت.', 'Le puits marque le croisement, pas la maison.', 'The well marks the junction, not the house.') },
       ],
-      answer: '13_15',
+      answer: '13_17',
       wrong: L('هادشي ما كيمشيش مع الأرقام الجداد.', 'هذا لا يتّفق مع الأرقام الجديدة.', 'Ça ne colle pas avec la renumérotation.', 'That doesn’t fit the renumbering.'),
-      success: L('5 ولات 13، و9 ولات 17. 7 بقات بلا رقم — بين 13 و15، فين الخريطة كتقول «جردة».', 'صار 5 هو 13، و9 هو 17. وبقي 7 بلا رقم بين 13 و15، حيث تقول الخريطة «حديقة».', 'Le 5 est devenu 13, le 9 est devenu 17. Le 7 n’a rien reçu : entre 13 et 15, là où le plan dit « jardin ».', '5 became 13 and 9 became 17. No. 7 got nothing: between 13 and 15, where the map says “garden”.'),
+      success: L('5 ولات 13، و9 ولات 17. 7 بقات بلا رقم — بين 13 و17، فين الخريطة كتقول «جردة». اليوم، رقم 15 تبنى تما.', 'صار 5 هو 13، و9 هو 17. وبقي 7 بلا رقم بين 13 و17، حيث تقول الخريطة «حديقة». واليوم يقوم هناك الرقم 15.', 'Le 5 est devenu 13, le 9 est devenu 17. Le 7 n’a rien reçu : entre 13 et 17, là où le plan dit « jardin ». Le n° 15 s’y dresse aujourd’hui.', '5 became 13 and 9 became 17. No. 7 got nothing: between 13 and 17, where the map says “garden”. Today No. 15 stands there.'),
       hints: [
         L('ما تقرأش الخريطة الجديدة بوحدها. شي وثيقة كتشرح كيفاش تبدّلو الأرقام.', 'لا تقرأ الخريطة الجديدة وحدها. هناك وثيقة تشرح كيف تغيّرت الأرقام.', 'Ne lisez pas le plan récent seul. Un document explique la renumérotation.', 'Don’t read the new map on its own. A document explains how the numbers changed.'),
         L('القرار كيعطي لكل رقم قديم رقم جديد. شوف الجيران ديال 7.', 'يعطي القرار لكلّ رقم قديم رقمًا جديدًا. انظر إلى جيران الرقم 7.', 'L’arrêté donne un nouveau numéro à chaque ancien. Regardez les voisins du 7.', 'The decree gives each old number a new one. Look at No. 7’s neighbours.'),
-        L('5 ← 13 و 9 ← 17. اللي كان بيناتهم، دابا بين 13 و15… ولا 17؟ الخريطة كتقول «جردة» بين 13 و15.', '5 ← 13 و9 ← 17. ما بينهما الآن بين 13 و15، حيث تقول الخريطة «حديقة».', '5 → 13 et 9 → 17. Ce qui était entre eux est entre 13 et 15, là où le plan indique « jardin ».', '5 → 13 and 9 → 17. Whatever stood between them is now between 13 and 15, where the map says “garden”.'),
+        L('5 ← 13 و 9 ← 17. اللي كان بيناتهم، دابا بين 13 و17، فين الخريطة كتقول «جردة».', '5 ← 13 و9 ← 17. ما كان بينهما صار الآن بين 13 و17، حيث تقول الخريطة «حديقة».', '5 → 13 et 9 → 17. Ce qui était entre eux est entre 13 et 17, là où le plan indique « jardin ».', '5 → 13 and 9 → 17. Whatever stood between them is now between 13 and 17, where the map says “garden”.'),
       ],
     },
     c_photo: {
@@ -727,7 +729,7 @@ export default {
 
   walkthrough: [
     ['visit', 'archive'], ['interact', 'ar_map55'], ['interact', 'ar_map70'], ['interact', 'ar_registry'], ['interact', 'ar_decree'], ['interact', 'ar_reply'],
-    ['solve', 'c_maps', '13_15'],
+    ['solve', 'c_maps', '13_17'],
     ['visit', 'square'], ['interact', 'sq_haddad'], ['interact', 'sq_well'],
     ['visit', 'newspaper'], ['interact', 'np_clipping'], ['interact', 'np_photo'],
     ['visit', 'archive'], ['solve', 'c_chain', ['built', 'm55', 'decree', 'annul', 'm70']],

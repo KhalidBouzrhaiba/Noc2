@@ -48,6 +48,12 @@ button:disabled {
 }
 svg {
   display: block;
+  /* illustrations are pictures: they never mirror or re-flow with the page direction */
+  direction: ltr;
+}
+:root[data-locale='ar'] :is(h1, h2, h3, .btn--lg, .modal__title, .tea__speech, .objpanel__desc, .level__text, .ending__text),
+:root[data-locale='dar'] :is(h1, h2, h3, .btn--lg, .modal__title, .tea__speech, .objpanel__desc, .level__text, .ending__text) {
+  word-spacing: 0.18em;
 }
 [hidden] {
   display: none !important;

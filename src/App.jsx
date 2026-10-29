@@ -42,6 +42,10 @@ export default function App() {
   );
 
   const toEnding = useCallback(() => setScreen('ending'), []);
+  const report = useCallback((id) => {
+    setCaseId(id);
+    setScreen('ending');
+  }, []);
   const exit = useCallback(
     (to) => {
       audio.stopAll();
@@ -79,7 +83,7 @@ export default function App() {
         onAdmin={() => setScreen('admin')}
       />
     );
-  else if (screen === 'cases') view = <CaseSelect onStart={start} onBack={() => setScreen('title')} />;
+  else if (screen === 'cases') view = <CaseSelect onStart={start} onBack={() => setScreen('title')} onReport={report} />;
   else if (screen === 'radio') view = <Radio key={`${caseId}-${p.run}`} def={def} onDone={() => setScreen('reveal')} />;
   else if (screen === 'reveal') view = <Reveal def={def} progress={p} onEnter={() => setScreen('play')} />;
   else if (screen === 'ending' && p.completed)
@@ -87,7 +91,7 @@ export default function App() {
   else view = <Game key={`${caseId}-${p.run}`} caseId={caseId} onEnding={toEnding} onExit={exit} />;
 
   // The case-selection screen must be reachable without an active case.
-  if (screen === 'cases' && (!def || !p) && !inEvent) view = <CaseSelect onStart={start} onBack={() => setScreen('title')} />;
+  if (screen === 'cases' && (!def || !p) && !inEvent) view = <CaseSelect onStart={start} onBack={() => setScreen('title')} onReport={report} />;
 
   return <ErrorBoundary onReset={() => setScreen('title')}>{view}</ErrorBoundary>;
 }

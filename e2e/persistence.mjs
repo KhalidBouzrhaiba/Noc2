@@ -69,10 +69,12 @@ for (const [loc, ids] of [['market', ['sm_receipt', 'sm_freezer']], ['police', [
 await page.locator('.dock').getByRole('button', { name: en(UI.navNoctaviae), exact: true }).click();
 await page.locator('.tea__topics .option', { hasText: en(A.puzzles.p_outage.title) }).click();
 await page.locator('.level').first().getByRole('button').click();
+await page.waitForTimeout(450); // confirmation ignores clicks in its first 400 ms (double-click guard)
 await page.getByRole('button', { name: en(UI.hintYes) }).click();
 const balAfter = await page.locator('.tea__balance').innerText();
 check('level 3 cannot be bought before level 2', (await page.locator('.level').nth(2).getByRole('button').count()) === 0);
 await page.locator('.level').nth(1).getByRole('button').click();
+await page.waitForTimeout(450); // confirmation ignores clicks in its first 400 ms (double-click guard)
 await page.getByRole('button', { name: en(UI.hintYes) }).click();
 const bal = Number(/\d+/.exec(await page.locator('.tea__balance').innerText())[0]);
 const lvl3 = page.locator('.level').nth(2);
@@ -80,7 +82,8 @@ if (bal < 50) {
   check('unaffordable level is blocked with an explanation', (await lvl3.getByRole('button').count()) === 0 && (await lvl3.innerText()).includes('50'), `balance ${bal}`);
 } else {
   await lvl3.getByRole('button').click();
-  await page.getByRole('button', { name: en(UI.hintYes) }).click();
+  await page.waitForTimeout(450); // confirmation ignores clicks in its first 400 ms (double-click guard)
+await page.getByRole('button', { name: en(UI.hintYes) }).click();
 }
 check('balance never negative', bal >= 0, String(bal));
 await page.keyboard.press('Escape');

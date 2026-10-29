@@ -36,8 +36,14 @@ export default function HintScene({ def, p, cfg, onBuy }) {
 
   const [pending, setPending] = useState(false);
   const [refusal, setRefusal] = useState(null);
+  const confirmShownAt = useRef(0);
+  const askConfirm = (level) => {
+    confirmShownAt.current = Date.now();
+    setConfirm(level);
+  };
   const buy = async (level) => {
-    if (busy.current) return;
+    // the confirm button appears where "buy" was: ignore the second half of a double click
+    if (busy.current || Date.now() - confirmShownAt.current < 400) return;
     busy.current = true;
     setPending(true);
     setRefusal(null);
@@ -123,12 +129,12 @@ export default function HintScene({ def, p, cfg, onBuy }) {
                           <button type="button" className="btn btn--primary" onClick={() => buy(level)} disabled={pending} aria-busy={pending}>
                             {t(pending ? UI.loading : UI.hintYes)}
                           </button>
-                          <button type="button" className="btn btn--ghost" onClick={() => setConfirm(null)}>
+                          <button type="button" className="btn btn--ghost" onClick={() => Date.now() - confirmShownAt.current >= 400 && setConfirm(null)}>
                             {t(UI.cancel)}
                           </button>
                         </div>
                       ) : (
-                        <button type="button" className="btn btn--secondary" onClick={() => setConfirm(level)}>
+                        <button type="button" className="btn btn--secondary" onClick={() => askConfirm(level)}>
                           {f(UI.hintBuy, { n: cost })}
                         </button>
                       )}

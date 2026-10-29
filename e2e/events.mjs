@@ -81,6 +81,7 @@ check('actions sync to the event', (await page.locator('.eventstrip').innerText(
 await page.locator('.dock').getByRole('button', { name: en(UI.navNoctaviae), exact: true }).click();
 await page.locator('.tea__topics .option').first().click();
 await page.locator('.level').first().getByRole('button').click();
+await page.waitForTimeout(450); // confirmation ignores clicks in its first 400 ms (double-click guard)
 await page.getByRole('button', { name: en(UI.hintYes) }).click();
 await page.waitForSelector('.level--bought');
 check('event hint delivered after server confirmation', (await page.locator('.level--bought').count()) === 1);

@@ -122,7 +122,8 @@ const SCENES = {
       <rect x="380" y="310" width="560" height="10" fill="#555" />
       <rect x="380" y="420" width="560" height="10" fill="#555" />
       <rect x="1060" y="520" width="440" height="180" fill="#3a3f44" />
-      <text x="1300" y="140" fill="#d9731f" fontSize="40" textAnchor="middle" fontFamily="'IM Fell English', serif" opacity=".8">MARKET · 24h</text>
+      <text x="1300" y="140" fill="#d9731f" fontSize="44" textAnchor="middle" fontFamily="monospace" opacity=".8">24/7</text>
+      <path d="M1210 112h40l-8 36h-26zM1222 154a5 5 0 1 0 0 1M1240 154a5 5 0 1 0 0 1" stroke="#d9731f" strokeWidth="5" fill="none" opacity=".8" />
     </Interior>
   ),
   apartment: () => (
@@ -244,8 +245,11 @@ const SCENES = {
           <ellipse cx={x} cy="760" rx="60" ry="10" fill="#ffc35c" opacity=".12" />
         </g>
       ))}
-      <rect x="40" y="560" width="220" height="40" rx="4" fill="#2f5d8a" opacity=".85" />
-      <text x="150" y="588" fill="#f1ede2" fontSize="24" textAnchor="middle" fontFamily="'IM Fell English', serif">RUE DES TILLEULS</text>
+      {/* street sign: a linden leaf and house numbers, no words (the game is played in four languages) */}
+      <rect x="40" y="560" width="200" height="44" rx="4" fill="#2f5d8a" opacity=".9" />
+      <path d="M78 582c0-14 14-18 22-10 8-8 22-4 22 10 0 12-14 18-22 14-8 4-22-2-22-14z" fill="#9cc48a" />
+      <path d="M100 572v24" stroke="#2f5d8a" strokeWidth="2" />
+      <text x="180" y="590" fill="#f1ede2" fontSize="22" textAnchor="middle" fontFamily="monospace">9–17</text>
       <Leaves seed={5} />
       <Fog id="street" y={620} />
     </>

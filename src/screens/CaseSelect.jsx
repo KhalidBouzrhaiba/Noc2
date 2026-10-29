@@ -10,7 +10,7 @@ import { CaseMotif } from '../art/CaseMotifs.jsx';
 
 const STATUS_LABEL = { new: UI.caseNew, inProgress: UI.caseInProgress, completed: UI.caseCompleted, unreadable: UI.saveUnreadable };
 
-export default function CaseSelect({ onStart, onBack }) {
+export default function CaseSelect({ onStart, onBack, onReport }) {
   const { t, f } = useSettings();
   const { progress, discardCase } = useGame();
   const [selected, setSelected] = useState(null);
@@ -79,9 +79,14 @@ export default function CaseSelect({ onStart, onBack }) {
                     </>
                   )}
                   {status === 'completed' && (
-                    <button type="button" className="btn btn--primary" onClick={() => setConfirmReplay(def.id)}>
-                      {t(UI.caseReplay)}
-                    </button>
+                    <>
+                      <button type="button" className="btn btn--primary" onClick={() => onReport(def.id)}>
+                        {t(UI.caseReport)}
+                      </button>
+                      <button type="button" className="btn btn--ghost" onClick={() => setConfirmReplay(def.id)}>
+                        {t(UI.caseReplay)}
+                      </button>
+                    </>
                   )}
                   {status === 'unreadable' && (
                     <button

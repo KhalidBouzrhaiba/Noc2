@@ -102,7 +102,7 @@ describe('puzzles', () => {
 
   it('accepts the word answer in every language, ignoring prefixes and accents', () => {
     let { p } = play(C, [
-      ['interact', 'ar_map55'], ['interact', 'ar_map70'], ['interact', 'ar_registry'], ['interact', 'ar_decree'], ['solve', 'c_maps', '13_15'],
+      ['interact', 'ar_map55'], ['interact', 'ar_map70'], ['interact', 'ar_registry'], ['interact', 'ar_decree'], ['solve', 'c_maps', '13_17'],
       ['visit', 'newspaper'], ['interact', 'np_photo'], ['visit', 'street'], ['interact', 'st_vane'],
       ['solve', 'c_photo', { vane: 'hedge', window: 'nothing', lane: 'linden' }], ['visit', 'garden'], ['interact', 'gd_door'],
     ]);

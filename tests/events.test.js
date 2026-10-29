@@ -2,6 +2,8 @@ import { describe, it, expect } from 'vitest';
 import { canTransition, rankRows, toCSV, csvCell, validName, validateEventInput, errorCode, retryable, TRANSITIONS } from '../src/events/rules.js';
 import { allCanon } from '../src/events/canon.js';
 import { CASES } from '../src/content/index.js';
+import { buildCanonSql } from '../src/events/canonSql.js';
+import { readFileSync } from 'node:fs';
 
 describe('event rules', () => {
   it('allows only defined lifecycle transitions', () => {
@@ -52,6 +54,10 @@ describe('event rules', () => {
     expect(errorCode({ message: 'event_paused' })).toBe('event_paused');
     expect(retryable('network')).toBe(true);
     expect(retryable('not_member')).toBe(false);
+  });
+
+  it('keeps the generated server rules in sync with the game content (run npm run gen:canon)', () => {
+    expect(readFileSync(new URL('../supabase/migrations/002_canon.sql', import.meta.url), 'utf8')).toBe(buildCanonSql());
   });
 
   it('derives canonical rules for every reward the game can award', () => {

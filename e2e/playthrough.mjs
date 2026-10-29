@@ -101,7 +101,9 @@ for (const def of CASES.filter((c) => only.includes(c.id))) {
         const before = await page.locator('.tea__balance').innerText();
         await page.locator('.tea__topics .option', { hasText: T(pz.title) }).click();
         const buy = page.locator('.level').first().getByRole('button');
-        await buy.dblclick(); // a double click must not charge twice
+        await buy.dblclick(); // a double click must neither confirm by accident nor charge twice
+        check(`${def.id}: double click on buy only opens the confirmation`, (await page.locator('.level--bought').count()) === 0);
+        await page.waitForTimeout(450);
         await page.getByRole('button', { name: T(UI.hintYes) }).click();
         await page.waitForSelector('.level--bought');
         const after = await page.locator('.tea__balance').innerText();

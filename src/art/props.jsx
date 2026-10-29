@@ -379,10 +379,14 @@ export const PROPS = {
     el: (
       <>
         <rect x="6" y="6" width="68" height="98" fill="#e6dcc4" transform="rotate(3 40 55)" />
-        <text x="40" y="34" fill={C.ink} fontSize="12" textAnchor="middle" fontFamily="'IM Fell English', serif" transform="rotate(3 40 55)">THE</text>
-        <text x="40" y="52" fill={C.red} fontSize="14" textAnchor="middle" fontFamily="'IM Fell English', serif" transform="rotate(3 40 55)">HOLLOW</text>
-        <text x="40" y="70" fill={C.ink} fontSize="12" textAnchor="middle" fontFamily="'IM Fell English', serif" transform="rotate(3 40 55)">WAKES</text>
-        <circle cx="40" cy="88" r="7" fill="none" stroke={C.ink} strokeWidth="2" transform="rotate(3 40 55)" />
+        <g transform="rotate(3 40 55)">
+          {/* a crude bell with a staring eye: the rumour, drawn rather than written */}
+          <path d="M24 66c0-22 6-36 16-36s16 14 16 36h6v6H18v-6z" fill={C.red} />
+          <ellipse cx="40" cy="52" rx="9" ry="6" fill={C.paper} />
+          <circle cx="40" cy="52" r="3.4" fill={C.ink} />
+          <circle cx="40" cy="78" r="4" fill={C.ink} />
+          <path d="M16 92h48M20 98h40" stroke={C.ink} strokeWidth="2.5" strokeLinecap="round" />
+        </g>
       </>
     ),
   },
@@ -406,7 +410,7 @@ export const PROPS = {
         <path d="M6 64 20 10h100l14 54z" fill="#3d3a33" />
         <path d="M24 16h92l10 42H14z" fill="#55514a" />
         <path d="M30 28h80M26 42h88" stroke="#3d3a33" strokeWidth="3" />
-        <text x="70" y="38" fill={C.amber} fontSize="9" textAnchor="middle" fontFamily="monospace">SERVICE</text>
+        <path d="M72 26l-8 12h7l-4 10 10-14h-7z" fill={C.amber} />
         <rect x="64" y="46" width="12" height="10" rx="2" fill={C.brass} />
       </>
     ),
@@ -420,8 +424,9 @@ export const PROPS = {
         {Array.from({ length: 12 }, (_, i) => (
           <path key={i} d="M70 18v10" stroke={C.ink} strokeWidth="3" transform={`rotate(${i * 30} 70 70)`} />
         ))}
-        <path className="clock-hand" d="M70 70V30" stroke={C.ink} strokeWidth="4" strokeLinecap="round" style={{ transformOrigin: '70px 70px' }} />
-        <path d="M70 70l22 12" stroke={C.ink} strokeWidth="5" strokeLinecap="round" />
+        {/* shows 23:57 — seventeen minutes ahead of the radio-controlled clock at the supermarket */}
+        <path d="M70 70V28" stroke={C.ink} strokeWidth="4" strokeLinecap="round" transform="rotate(342 70 70)" />
+        <path d="M70 70V42" stroke={C.ink} strokeWidth="6" strokeLinecap="round" transform="rotate(358.5 70 70)" />
         <circle cx="70" cy="70" r="5" fill={C.brass} />
       </>
     ),
@@ -466,7 +471,9 @@ export const PROPS = {
       <>
         <circle cx="40" cy="40" r="36" fill={C.metalL} />
         <circle cx="40" cy="40" r="30" fill="#f4f1ea" />
-        <path d="M40 40V18M40 40l14 8" stroke={C.ink} strokeWidth="3" strokeLinecap="round" />
+        {/* 23:40 */}
+        <path d="M40 40V16" stroke={C.ink} strokeWidth="2.5" strokeLinecap="round" transform="rotate(240 40 40)" />
+        <path d="M40 40V24" stroke={C.ink} strokeWidth="3.5" strokeLinecap="round" transform="rotate(350 40 40)" />
         <path d="M58 22l6-6m-2 8 6-2" stroke={C.red} strokeWidth="2" />
       </>
     ),

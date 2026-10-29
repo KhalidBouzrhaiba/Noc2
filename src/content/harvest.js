@@ -6,9 +6,10 @@ import { L } from '../core/i18n.js';
 export const bible = {
   truth:
     'Committee chair Adela Thorn secretly revived the 1987 Lantern Procession, voted out in 1988. On 29 Oct she ' +
-    'borrowed the archived timer card and on festival night swapped it into the bell timer. The card strikes at ' +
-    '20:00 and 22:00 tower time, but the tower clock has run 17 minutes fast since the September storm, so the bell ' +
-    'rang at 19:43 and 21:43. Older residents recognised the old cue (stop, raise lanterns, face the tower) and ' +
+    'borrowed the archived timer card and on festival night swapped it into the bell timer. The normal festival card ' +
+    'is radio-synced and rings single strokes (20:00, 22:00, 00:00). The 1987 card runs the timer in mechanical mode, ' +
+    'reading the tower clock — fast by 17 minutes since the September storm — and rings three strokes at "20:00" and ' +
+    '"22:00": 19:43 and 21:43 real time, and no closing bell at midnight. Older residents recognised the three-stroke cue (stop, raise lanterns, face the tower) and ' +
     'visitors copied them: the "synchronised" crowd. Separately and by accident, technician Sami Ouardi had put the ' +
     'festoon lights and the bell motor on the same circuit L2; the motor’s inrush tripped L2 at each strike, causing ' +
     'the blackouts. The "midnight bell" rumour is false. A third strike at 23:13 is on no card and caused no blackout ' +
@@ -131,10 +132,10 @@ export default {
       kind: 'statement', status: 'unverified', from: 'square',
       title: L('شهادة يوسف، مول الكوشة', 'شهادة يوسف، صاحب الكشك', 'Témoignage de Youssef, marchand', 'Youssef’s statement (stallholder)'),
       body: L(
-        '«الناقوس ضرب قبل التمنية. شفت فالمكانة ديالي: 19:43. الضو طفا معاه. الشيوخ وقفو فبلاصتهم، هزّو الفنارات وداروا وجوههم للصومعة. الزوار دارو بحالهم. نفس الشي مع 21:43.»',
-        '«قرع الجرس قبل الثامنة. نظرت إلى ساعتي: 19:43. انطفأت الأضواء معه. توقّف الكبار في أماكنهم ورفعوا الفوانيس واستداروا نحو البرج، وقلّدهم الزوّار. وتكرّر الأمر عند 21:43.»',
-        '« La cloche a sonné avant huit heures. J’ai regardé ma montre : 19 h 43. Les lumières se sont éteintes avec. Les anciens se sont figés, lanternes levées, face à la tour. Les visiteurs les ont imités. Pareil à 21 h 43. »',
-        '“The bell rang before eight. I checked my watch: 19:43. The lights went out with it. The old folks froze, raised their lanterns and faced the tower. The visitors copied them. Same again at 21:43.”',
+        '«الناقوس ضرب تلات مرات قبل التمنية. شفت فالمكانة ديالي: 19:43. الضو طفا معاه. الشيوخ وقفو فبلاصتهم، هزّو الفنارات وداروا وجوههم للصومعة. الزوار دارو بحالهم. نفس الشي مع 21:43.»',
+        '«قرع الجرس ثلاث مرّات قبل الثامنة. نظرت إلى ساعتي: 19:43. انطفأت الأضواء معه. توقّف الكبار في أماكنهم ورفعوا الفوانيس واستداروا نحو البرج، وقلّدهم الزوّار. وتكرّر الأمر عند 21:43.»',
+        '« La cloche a sonné trois coups avant huit heures. J’ai regardé ma montre : 19 h 43. Les lumières se sont éteintes avec. Les anciens se sont figés, lanternes levées, face à la tour. Les visiteurs les ont imités. Pareil à 21 h 43. »',
+        '“The bell rang three times before eight. I checked my watch: 19:43. The lights went out with it. The old folks froze, raised their lanterns and faced the tower. The visitors copied them. Same again at 21:43.”',
       ),
     },
     rumor_spirit: {
@@ -161,10 +162,10 @@ export default {
       kind: 'object', status: 'verified', from: 'clocktower',
       title: L('ورقة فالماكينة ديال الساعة', 'بطاقة على آلية الساعة', 'Étiquette sur le mécanisme', 'Tag on the clock mechanism'),
       body: L(
-        '«من العاصفة ديال شتنبر، الساعة كتزيد — كتمشي قدّام. غادي تتصلّح من بعد الموسم. — س.و.»\nالناقوس كيضرب على حساب هاد الساعة.',
-        '«منذ عاصفة سبتمبر والساعة تُسرع. تُضبط بعد المهرجان. — س.و.»\nالجرس يقرع وفق توقيت هذه الساعة.',
-        '« Depuis l’orage de septembre, l’horloge avance. À régler après le festival. — S.O. »\nLa cloche sonne à l’heure de cette horloge.',
-        '“Since the September storm the clock gains — it runs ahead. To be regulated after the festival. — S.O.”\nThe bell strikes by this clock’s time.',
+        '«من العاصفة ديال شتنبر، الساعة كتزيد — كتمشي قدّام. غادي تتصلّح من بعد الموسم. — س.و.»\nفالوضع الميكانيكي، الناقوس كيضرب على حساب هاد الساعة. فالوضع العادي، كيتبع إشارة الراديو.',
+        '«منذ عاصفة سبتمبر والساعة تُسرع. تُضبط بعد المهرجان. — س.و.»\nفي الوضع الميكانيكي يقرع الجرس وفق هذه الساعة. وفي الوضع العادي يتبع إشارة الراديو.',
+        '« Depuis l’orage de septembre, l’horloge avance. À régler après le festival. — S.O. »\nEn mode mécanique, la cloche suit cette horloge. En mode normal, elle suit le signal horaire radio.',
+        '“Since the September storm the clock gains — it runs ahead. To be regulated after the festival. — S.O.”\nIn mechanical mode the bell strikes by this clock. In normal mode it follows the radio time signal.',
       ),
     },
     ribbon: {
@@ -221,10 +222,10 @@ export default {
       kind: 'document', status: 'verified', from: 'archive',
       title: L('نظام موكب الفنارات (1987)', 'إجراءات موكب الفوانيس (1987)', 'Règlement de la procession (1987)', 'Lantern Procession procedure (1987)'),
       body: L(
-        'مع الضربات ديال الناقوس، الضو كينقص.\nاللي هازين الفنارات كيوقفو فبلاصتهم، الفنار لفوق، وجوههم للصومعة، دقيقة.\nمن بعد كيمشيو للصومعة بلا هضرة.\nالقفل ديال باب الجردة (منين كتبدا الموكب) مضبوط على العام ديال آخر موكب.',
-        'عند ضربات الجرس تُخفَّض الأضواء.\nيقف حاملو الفوانيس في أماكنهم، الفانوس مرفوع، والوجه نحو البرج، دقيقة واحدة.\nثم يسيرون نحو البرج بصمت.\nقفل بوابة الحديقة (منطلق الموكب) مضبوط على سنة آخر موكب.',
-        'Aux coups de cloche, les lampes sont baissées.\nLes porteurs s’immobilisent, lanterne levée, face à la tour, une minute.\nPuis ils marchent vers la tour en silence.\nLe cadenas du portail du jardin (départ de la procession) est réglé sur l’année de la dernière procession.',
-        'At the strokes of the bell, the lamps are dimmed.\nBearers stand still, lanterns raised, facing the tower, for one minute.\nThen they walk to the tower in silence.\nThe garden-gate lock (where the procession starts) is set to the year of the last procession.',
+        'مع التلات ضربات ديال الناقوس، الضو كينقص.\nاللي هازين الفنارات كيوقفو فبلاصتهم، الفنار لفوق، وجوههم للصومعة، دقيقة.\nمن بعد كيمشيو للصومعة بلا هضرة.\nالقفل ديال باب الجردة (منين كتبدا الموكب) مضبوط على العام ديال آخر موكب.',
+        'عند ضربات الجرس الثلاث تُخفَّض الأضواء.\nيقف حاملو الفوانيس في أماكنهم، الفانوس مرفوع، والوجه نحو البرج، دقيقة واحدة.\nثم يسيرون نحو البرج بصمت.\nقفل بوابة الحديقة (منطلق الموكب) مضبوط على سنة آخر موكب.',
+        'Aux trois coups de cloche, les lampes sont baissées.\nLes porteurs s’immobilisent, lanterne levée, face à la tour, une minute.\nPuis ils marchent vers la tour en silence.\nLe cadenas du portail du jardin (départ de la procession) est réglé sur l’année de la dernière procession.',
+        'At the bell’s three strokes, the lamps are dimmed.\nBearers stand still, lanterns raised, facing the tower, for one minute.\nThen they walk to the tower in silence.\nThe garden-gate lock (where the procession starts) is set to the year of the last procession.',
       ),
     },
     ledger: {
@@ -271,10 +272,10 @@ export default {
       kind: 'object', status: 'verified', from: 'service',
       title: L('كارطة التوقيت', 'بطاقة المؤقّت', 'Carte de la minuterie', 'Timer card'),
       body: L(
-        'الكارطة اللي فالماكينة: «الموكب 1987 — ضربات مع 20:00 و22:00 (وقت الصومعة)».\nالكارطة ديال الموسم العادية محيّدة وموحولة حداها.\nحتى ضربة مع 23:13 ما كاينة.',
-        'البطاقة داخل الآلة: «موكب 1987 — ضربات عند 20:00 و22:00 (توقيت البرج)».\nبطاقة المهرجان العادية منزوعة وموضوعة جانبًا.\nلا ضربة عند 23:13.',
-        'Carte insérée : « PROCESSION 1987 — coups à 20 h 00 et 22 h 00 (heure de la tour) ».\nLa carte normale du festival a été retirée, posée à côté.\nAucun coup à 23 h 13.',
-        'Card inserted: “PROCESSION 1987 — strikes at 20:00 and 22:00 (tower time)”.\nThe normal festival card has been removed and set aside.\nNo strike at 23:13.',
+        'الكارطة اللي فالماكينة: «الموكب 1987 — تلات ضربات مع 20:00 و22:00. وضع ميكانيكي: كيقرا وقت الصومعة».\nالكارطة العادية ديال الموسم (مضبوطة بالراديو، ضربة وحدة مع 20:00 و22:00 و00:00) محيّدة وموحولة حداها.\nحتى ضربة مع 23:13 ما كاينة.',
+        'البطاقة داخل الآلة: «موكب 1987 — ثلاث ضربات عند 20:00 و22:00. وضع ميكانيكي: يقرأ توقيت البرج».\nبطاقة المهرجان العادية (مضبوطة بالراديو، ضربة واحدة عند 20:00 و22:00 و00:00) منزوعة وموضوعة جانبًا.\nلا ضربة عند 23:13.',
+        'Carte insérée : « PROCESSION 1987 — trois coups à 20 h 00 et 22 h 00. Mode mécanique : lit l’heure de la tour ».\nLa carte normale du festival (calée sur la radio, un coup à 20 h, 22 h et minuit) a été retirée, posée à côté.\nAucun coup à 23 h 13.',
+        'Card inserted: “PROCESSION 1987 — three strokes at 20:00 and 22:00. Mechanical mode: reads the tower clock”.\nThe normal festival card (radio-synced, one stroke at 20:00, 22:00 and 00:00) has been removed and set aside.\nNo strike at 23:13.',
       ),
     },
     config: {

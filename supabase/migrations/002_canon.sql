@@ -122,7 +122,7 @@ insert into noct.canon_rewards (case_id, reward_id, score, hint, requires) value
 insert into noct.canon_rewards (case_id, reward_id, score, hint, requires) values ('house', 'deduction:d_silence', 30, 10, '{"all":[{"clue":"letter"},{"clue":"note"}]}'::jsonb);
 insert into noct.canon_rewards (case_id, reward_id, score, hint, requires) values ('house', 'deduction:d_plate', 30, 10, '{"all":[{"clue":"plate"},{"clue":"map1955"}]}'::jsonb);
 insert into noct.canon_rewards (case_id, reward_id, score, hint, requires) values ('house', 'deduction:d_myth', 30, 10, '{"all":[{"clue":"neverexisted"},{"clue":"map1955"}]}'::jsonb);
-insert into noct.canon_puzzles (case_id, puzzle_id, type, answer, filler, requires) values ('house', 'c_maps', 'choice', '"13_15"'::jsonb, array[]::text[], '{"all":[{"clue":"map1955"},{"clue":"map1970"},{"clue":"decree"}]}'::jsonb);
+insert into noct.canon_puzzles (case_id, puzzle_id, type, answer, filler, requires) values ('house', 'c_maps', 'choice', '"13_17"'::jsonb, array[]::text[], '{"all":[{"clue":"map1955"},{"clue":"map1970"},{"clue":"decree"}]}'::jsonb);
 insert into noct.canon_rewards (case_id, reward_id, score, hint, requires) values ('house', 'puzzle:c_maps', 50, 15, '{"all":[{"clue":"map1955"},{"clue":"map1970"},{"clue":"decree"}]}'::jsonb);
 insert into noct.canon_puzzles (case_id, puzzle_id, type, answer, filler, requires) values ('house', 'c_photo', 'match', '{"vane":"hedge","window":"nothing","lane":"linden"}'::jsonb, array[]::text[], '{"all":[{"clue":"photo"},{"clue":"weathervane"}]}'::jsonb);
 insert into noct.canon_rewards (case_id, reward_id, score, hint, requires) values ('house', 'puzzle:c_photo', 50, 15, '{"all":[{"clue":"photo"},{"clue":"weathervane"}]}'::jsonb);

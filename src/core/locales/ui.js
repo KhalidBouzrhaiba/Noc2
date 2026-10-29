@@ -54,6 +54,7 @@ export const UI = {
   caseCompleted: L('مسدودة', 'مكتملة', 'Close', 'Completed'),
   caseBegin: L('حلّ الملف', 'افتح الملف', 'Ouvrir le dossier', 'Open the file'),
   caseResume: L('كمّل من فين حبستي', 'تابِع من حيث توقفت', 'Reprendre où vous étiez', 'Resume where you left off'),
+  caseReport: L('قرا التقرير ديال القضية', 'اقرأ تقرير القضية', 'Relire le rapport', 'Read the case report'),
   caseReplay: L('عاود من اللول', 'أعِد من البداية', 'Rejouer depuis le début', 'Replay from the start'),
   caseFileNo: L('ملف رقم {n}', 'ملف رقم {n}', 'Dossier n° {n}', 'File no. {n}'),
   caseBestScore: L('أحسن نقطة: {score}', 'أفضل نتيجة: {score}', 'Meilleur score : {score}', 'Best score: {score}'),
