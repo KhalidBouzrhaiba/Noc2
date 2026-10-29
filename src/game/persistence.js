@@ -6,7 +6,8 @@ const PREFIX = 'noctaviae:';
 export const KEYS = {
   settings: `${PREFIX}settings`,
   session: `${PREFIX}session`,
-  case: (id) => `${PREFIX}case:${id}`,
+  // Solo saves use "noctaviae:case:<id>"; event play uses "noctaviae:<scope>:case:<id>".
+  case: (id, scope = 'solo') => (scope === 'solo' ? `${PREFIX}case:${id}` : `${PREFIX}${scope}:case:${id}`),
 };
 
 export function createStore(storage) {
@@ -123,7 +124,7 @@ export function validateProgress(def, raw) {
   }
   p.hints = Array.isArray(data.hints)
     ? data.hints.filter(
-        (h) => h && def.puzzles[h.puzzle] && [1, 2, 3].includes(h.level) && Number.isFinite(h.cost) && h.cost >= 0,
+        (h) => h && (def.puzzles[h.puzzle] || h.puzzle === 'final') && [1, 2, 3].includes(h.level) && Number.isFinite(h.cost) && h.cost >= 0,
       )
     : [];
   if (Array.isArray(data.hints) && p.hints.length !== data.hints.length) problems.push('hints_filtered');
@@ -148,11 +149,11 @@ export function validateProgress(def, raw) {
   return { status: problems.some((x) => !x.startsWith('migrated')) ? 'repaired' : 'ok', p, problems };
 }
 
-export function loadCase(store, def) {
-  const res = store.read(KEYS.case(def.id));
+export function loadCase(store, def, scope = 'solo') {
+  const res = store.read(KEYS.case(def.id, scope));
   if (!res.ok) return { status: res.error === 'malformed' ? 'invalid' : 'unavailable', problems: [res.error] };
   return validateProgress(def, res.value);
 }
 
-export const saveCase = (store, p) => store.write(KEYS.case(p.caseId), p);
-export const deleteCase = (store, caseId) => store.remove(KEYS.case(caseId));
+export const saveCase = (store, p, scope = 'solo') => store.write(KEYS.case(p.caseId, scope), p);
+export const deleteCase = (store, caseId, scope = 'solo') => store.remove(KEYS.case(caseId, scope));

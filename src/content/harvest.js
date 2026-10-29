@@ -72,37 +72,37 @@ export default {
 
   locations: [
     {
-      id: 'square', scene: 'square', map: [44, 46],
+      id: 'square', scene: 'square', map: [46, 44],
       name: L('ساحة الموسم', 'ساحة المهرجان', 'La place du festival', 'Festival square'),
       desc: L('القرع، الكوانب ديال الكاوكاو، والفنارات معلّقين بخيوط. الناس كيهضرو بصوت واطي.', 'يقطين وأكشاك وفوانيس معلّقة بالخيوط. الناس يتحدّثون همسًا.', 'Citrouilles, étals, guirlandes de lanternes. Les gens parlent à voix basse.', 'Pumpkins, stalls and strings of lanterns. People talk in low voices.'),
     },
     {
-      id: 'clocktower', scene: 'clocktower', map: [60, 22],
+      id: 'clocktower', scene: 'clocktower', map: [74, 18],
       name: L('صومعة الساعة', 'برج الساعة', 'La tour de l’horloge', 'Clock tower'),
       desc: L('الدروج ضيقين. فوق، الناقوس ساكت بحال إلا كيتسنى.', 'الدرج ضيّق. وفي الأعلى جرس صامت كأنه ينتظر.', 'L’escalier est étroit. En haut, la cloche se tait comme si elle attendait.', 'The stairs are narrow. Above, the bell hangs silent, as if waiting.'),
     },
     {
-      id: 'market', scene: 'market', map: [74, 62],
+      id: 'market', scene: 'market', map: [82, 52],
       name: L('السوبرمارشي', 'المتجر الكبير', 'Le supermarché', 'Supermarket'),
       desc: L('على نفس الخيط ديال الضو اللي كيغذّي الساحة.', 'على خطّ الكهرباء نفسه الذي يغذّي الساحة.', 'Sur la même ligne électrique que la place.', 'On the same power line as the square.'),
     },
     {
-      id: 'archive', scene: 'archive', map: [24, 30],
+      id: 'archive', scene: 'archive', map: [18, 20],
       name: L('أرشيف المدينة', 'أرشيف البلدة', 'Les archives municipales', 'Town archive'),
       desc: L('صناديق الكارتون حتى للسقف، وريحة الورق القديم.', 'صناديق كرتون حتى السقف ورائحة الورق القديم.', 'Des cartons jusqu’au plafond et l’odeur du vieux papier.', 'Boxes to the ceiling and the smell of old paper.'),
     },
     {
-      id: 'police', scene: 'police', map: [62, 74],
+      id: 'police', scene: 'police', map: [64, 78],
       name: L('الكوميسارية', 'مركز الشرطة', 'Le commissariat', 'Police station'),
       desc: L('التيليفون ما حبسش كيصوني الليلة كاملة.', 'لم يتوقّف الهاتف عن الرنين طوال الليل.', 'Le téléphone n’a pas cessé de sonner de la nuit.', 'The phone hasn’t stopped ringing all night.'),
     },
     {
-      id: 'garden', scene: 'garden', map: [12, 56], unlock: { puzzle: 'h_gate' },
+      id: 'garden', scene: 'garden', map: [14, 62], unlock: { puzzle: 'h_gate' },
       name: L('الجردة المهجورة', 'الحديقة المهجورة', 'Le jardin abandonné', 'Abandoned garden'),
       desc: L('من هنا كانت كتبدا الموكب زمان. دابا غير الحشيش والشوك.', 'من هنا كان الموكب ينطلق قديمًا. لم يبقَ اليوم إلا العشب والشوك.', 'C’est d’ici que partait la procession. Il n’en reste que ronces et herbes folles.', 'The procession used to start here. Now there are only brambles.'),
     },
     {
-      id: 'service', scene: 'machine', map: [48, 66], unlock: { flag: 'service_open' },
+      id: 'service', scene: 'machine', map: [34, 80], unlock: { flag: 'service_open' },
       name: L('بيت الخدمة ديال الموسم', 'غرفة خدمات المهرجان', 'Le local technique du festival', 'Festival service room'),
       desc: L('تحت الساحة. كابلات، صناديق، وماكينة كتحسب الوقت.', 'تحت الساحة: كابلات وصناديق وآلة تعدّ الوقت.', 'Sous la place : câbles, caisses, et une machine qui compte le temps.', 'Under the square: cables, crates, and a machine that counts time.'),
     },

@@ -68,37 +68,37 @@ export default {
 
   locations: [
     {
-      id: 'archive', scene: 'archive', map: [24, 30],
+      id: 'archive', scene: 'archive', map: [18, 18],
       name: L('أرشيف البلدية', 'الأرشيف البلدي', 'Archives municipales', 'Municipal archive'),
       desc: L('خرايط ملويين ودفاتر ديال الملكية. إدريس كيتسناك.', 'خرائط ملفوفة ودفاتر ملكية. إدريس ينتظرك.', 'Cartes roulées et registres fonciers. Idris vous attend.', 'Rolled maps and property registers. Idris is expecting you.'),
     },
     {
-      id: 'square', scene: 'square', map: [44, 46],
+      id: 'square', scene: 'square', map: [44, 40],
       name: L('الساحة العمومية', 'الساحة العامة', 'La place publique', 'Public square'),
       desc: L('الشيوخ جالسين على البنك ديال العادة.', 'الشيوخ جالسون على مقعدهم المعتاد.', 'Les anciens occupent leur banc habituel.', 'The old men sit on their usual bench.'),
     },
     {
-      id: 'newspaper', scene: 'newsroom', map: [46, 56],
+      id: 'newspaper', scene: 'newsroom', map: [74, 18],
       name: L('الجريدة', 'مكتب الجريدة', 'Le journal', 'Newspaper office'),
       desc: L('الأرشيف ديال الكوريي مخبّي فالقبو.', 'أرشيف «الكورييه» محفوظ في القبو.', 'Les archives du Courrier dorment au sous-sol.', 'The Courier’s archive sleeps in the basement.'),
     },
     {
-      id: 'street', scene: 'street', map: [70, 40], unlock: { puzzle: 'c_maps' },
+      id: 'street', scene: 'street', map: [80, 48], unlock: { puzzle: 'c_maps' },
       name: L('زنقة الزيزفون', 'شارع الزيزفون', 'Rue des Tilleuls', 'Linden Street'),
       desc: L('ديور قدام، أرقام جداد. كاين شي حاجة ما مركّباش.', 'بيوت قديمة وأرقام جديدة. شيء ما لا يستقيم.', 'Vieilles maisons, numéros neufs. Quelque chose cloche.', 'Old houses, new numbers. Something doesn’t add up.'),
     },
     {
-      id: 'garden', scene: 'garden', map: [80, 58], unlock: { puzzle: 'c_photo' },
+      id: 'garden', scene: 'garden', map: [58, 66], unlock: { puzzle: 'c_photo' },
       name: L('الجردة', 'الحديقة', 'Le jardin', 'Garden'),
       desc: L('ممر ضيّق ورا الشجر. الحيط مغطّي بالعرش.', 'ممرّ ضيّق خلف السياج. الجدار مغطّى باللبلاب.', 'Un passage étroit derrière la haie. Le mur disparaît sous le lierre.', 'A narrow passage behind the hedge. The wall is lost under ivy.'),
     },
     {
-      id: 'house', scene: 'house', map: [88, 46], unlock: { puzzle: 'c_word' },
+      id: 'house', scene: 'house', map: [84, 82], unlock: { puzzle: 'c_word' },
       name: L('الدار المهجورة', 'البيت المهجور', 'La maison abandonnée', 'Abandoned house'),
       desc: L('الغبرة، والضو داخل من الشرجم المدوّر.', 'غبار، وضوء يدخل من النافذة المستديرة.', 'De la poussière, et la lumière qui tombe de la fenêtre ronde.', 'Dust, and light falling through the round window.'),
     },
     {
-      id: 'hidden', scene: 'hidden', map: [92, 32], unlock: { flag: 'shelf_open' },
+      id: 'hidden', scene: 'hidden', map: [34, 84], unlock: { flag: 'shelf_open' },
       name: L('البيت المخبية', 'الغرفة المخفية', 'La pièce cachée', 'Hidden room'),
       desc: L('مكتب صغير، شمعة مطفية، ورسائل مربوطة بخيط.', 'مكتب صغير وشمعة مطفأة ورسائل مربوطة بخيط.', 'Un petit bureau, une bougie éteinte, des lettres nouées.', 'A small study, a dead candle, letters tied with string.'),
     },

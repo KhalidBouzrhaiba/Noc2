@@ -92,7 +92,7 @@ export default {
     {
       id: 'station',
       scene: 'studio',
-      map: [30, 38],
+      map: [20, 20],
       name: L('الإذاعة', 'محطة الإذاعة', 'La station de radio', 'Radio station'),
       desc: L(
         'الضو الحمر ديال «على الهوا» طافي. الكرسي ديال الضيف باقي مقلوب شوية.',
@@ -104,7 +104,7 @@ export default {
     {
       id: 'police',
       scene: 'police',
-      map: [62, 30],
+      map: [72, 16],
       name: L('الكوميسارية', 'مركز الشرطة', 'Le commissariat', 'Police station'),
       desc: L(
         'ريحة القهوة الباردة وورق كثير. المفتشة بنعلي ما نعساتش.',
@@ -116,7 +116,7 @@ export default {
     {
       id: 'newspaper',
       scene: 'newsroom',
-      map: [46, 56],
+      map: [42, 42],
       name: L('الجريدة', 'مكتب الجريدة', 'Le journal', 'Newspaper office'),
       desc: L(
         'مكتب ميرا مرتب بزاف، بحال اللي كانت عارفة شي واحد غادي يقلّب فيه.',
@@ -128,7 +128,7 @@ export default {
     {
       id: 'market',
       scene: 'market',
-      map: [74, 62],
+      map: [80, 44],
       name: L('السوبرمارشي', 'المتجر الكبير', 'Le supermarché', 'Supermarket'),
       desc: L(
         'الضو الأبيض ديال الليل وراديو صغير فوق الكاشة.',
@@ -140,7 +140,7 @@ export default {
     {
       id: 'apartment',
       scene: 'apartment',
-      map: [20, 66],
+      map: [16, 64],
       unlock: { item: 'aptkey' },
       name: L('دار ميرا', 'شقة ميرا', 'L’appartement de Mira', 'Mira’s apartment'),
       desc: L(
@@ -153,7 +153,7 @@ export default {
     {
       id: 'tower',
       scene: 'tower',
-      map: [84, 18],
+      map: [82, 76],
       unlock: { puzzle: 'p_outage' },
       name: L('برج الإذاعة', 'برج البثّ', 'La tour d’émission', 'Radio tower'),
       desc: L(
@@ -166,7 +166,7 @@ export default {
     {
       id: 'mroom',
       scene: 'machine',
-      map: [90, 34],
+      map: [48, 82],
       unlock: { puzzle: 'p_code' },
       name: L('بيت الصيانة', 'غرفة الصيانة', 'La salle de maintenance', 'Tower maintenance room'),
       desc: L(

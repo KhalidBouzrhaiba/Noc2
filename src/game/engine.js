@@ -98,6 +98,11 @@ export function hintBalance(def, p, cfg = DEFAULT_CONFIG) {
   return cfg.hints.startBalance + earned - spent;
 }
 
+/** Hints exist for every puzzle and for the final deduction ("final"). */
+export function hintTarget(def, id) {
+  return id === 'final' ? def.final : def.puzzles[id] ?? null;
+}
+
 export function purchasedLevels(p, puzzle) {
   return p.hints.filter((h) => h.puzzle === puzzle).map((h) => h.level).sort();
 }
@@ -274,7 +279,7 @@ export function act(def, p, action, cfg = DEFAULT_CONFIG, now = Date.now()) {
 
     case 'hint': {
       const { puzzle, level, tx } = action;
-      const pz = def.puzzles[puzzle];
+      const pz = hintTarget(def, puzzle);
       if (!pz || !pz.hints || level < 1 || level > 3) return { p, r: fail('unknown_hint') };
       if (!check(pz.requires, p) && !p.solved.includes(puzzle)) return { p, r: fail('hint_unavailable') };
       if (p.hints.some((h) => h.puzzle === puzzle && h.level === level)) return { p, r: { ...emptyResult(), code: 'already_purchased' } };
